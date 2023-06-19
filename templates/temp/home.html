@@ -8,7 +8,35 @@
 
 <h1>HOME</h1>
 
+<section>
+    <h3>ALL EQUIPE</h3>
 
+    <a href={% url 'addEquipe' %}>Creer une Equipe</a>
+
+    {% for el in allEquipe %}
+        
+    <p> {{el.name}} </p>
+
+
+    {% endfor %} 
+</section>
+
+
+
+..................................................
+
+
+<section>
+    <h3>ALL JOUEUR</h3>
+
+    <a href={% url 'addJoueur' %}>Creer un joueuer</a>
+
+    {% for el in allJoueur %}
+    <p> {{el.name}} </p>
+
+    {% endfor %}
+
+</section>
 
 
 {% endblock content %}

@@ -9,4 +9,14 @@
 <h1>Page Equipe</h1>
 
 
+<form method="post">
+
+    {% csrf_token %}
+
+    {{form}}
+
+    <button type="submit">add</button>
+</form>
+
+
 {% endblock content %}
