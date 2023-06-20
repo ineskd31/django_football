@@ -19,7 +19,7 @@ class Joueur(models.Model):
     origin = models.CharField(max_length=50)
     image = models.URLField()
     role = models.ForeignKey(Roles, on_delete=models.CASCADE)
-    equipe = models.OneToOneField(Equipe, on_delete=models.CASCADE)
+    equipe = models.ForeignKey(Equipe, on_delete=models.CASCADE, blank=True, null=True)
     
 
 
