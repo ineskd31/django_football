@@ -11,4 +11,4 @@ def addEquipe(request):
             return redirect('home')
     else:
         form = EquipeForm()
-    return render(request, 'temp/addEquipe.html', {'form':form})
+    return render(request, 'temp/equipe/addEquipe.html', {'form':form})

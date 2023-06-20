@@ -11,5 +11,5 @@ def addJoueur(request):
             return redirect('home')
     else:
         form = JoueurForm()
-    return render(request, 'temp/addJoueur.html', {'form':form})
+    return render(request, 'temp/joueur/addJoueur.html', {'form':form})
 
