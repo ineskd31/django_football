@@ -8,10 +8,10 @@ def run():
     
     
     roles = [
-        {"name":"Avant"},
-        {"name":"Arriere"},
-        {"name":"Central"},
-        {"name":"Remplacant"},
+        {"name":"Avant"},3
+        {"name":"Arriere"},3
+        {"name":"Central"},3
+        {"name":"Remplacant"},3
     ]
     for el in roles:
         seeder.add_entity(Roles, 1, el)
