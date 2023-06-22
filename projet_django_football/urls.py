@@ -26,5 +26,8 @@ urlpatterns = [
     path('', home, name='home'),
     path('addJoueur/', addJoueur, name='addJoueur'),
     path('addEquipe/', addEquipe, name='addEquipe'),
-    
+        path('editJoueur/<int:id>', editJoueur, name='editJoueur'),
+    path('editEquipe/<int:id>', editEquipe, name='editEquipe'),
+    path('show/<int:id>', showJoueur, name='detail'),
+    path('showEquipe/<int:id>', showEquipe, name='detailEquipe')
 ]

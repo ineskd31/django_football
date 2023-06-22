@@ -4,6 +4,10 @@
 
 
 
+{% load static %}
+
+
+
 {% block content %}
 
 <h1>HOME</h1>
@@ -11,14 +15,26 @@
 <section>
     <h3>ALL EQUIPE</h3>
 
-    <a href={% url 'addEquipe' %}>Creer une Equipe</a>
+    <a  href={% url 'addEquipe' %}>Creer une Equipe</a>
 
-    {% for el in allEquipe %}
+    <div class='all'>
+        {% for el in allEquipe %}
         
-    <p> {{el.name}} </p>
-
-
-    {% endfor %} 
+        <div>
+            <div  class='titre_equipe'>
+                <p>
+                    {{el.name}}
+            
+                    <button><a href={% url 'editEquipe' el.id %}>Edit</a></button>
+            
+                    <button><a href={% url 'detailEquipe' el.id %}>Details</a></button>
+                </p>
+            </div>
+            <div class='team'>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </section>
 
 
@@ -32,10 +48,196 @@
     <a href={% url 'addJoueur' %}>Creer un joueuer</a>
 
     {% for el in allJoueur %}
-    <p> {{el.name}} </p>
+    <p> {{el.name}} <button><a href={% url 'editJoueur' el.id %}>Edit</a></button> <button><a href={% url 'detail' el.id %}>Details</a></button> <button><a >Delete</a></button> </p>
 
     {% endfor %}
 
+</section>
+
+
+..................................................
+
+
+
+<section>
+
+    <h3>ALL </h3>
+
+    <div class=" d-flex">
+        <div class="">
+            <div>
+           
+              {% for equipe in allEquipe %}
+              <table border=1>
+                <tr><td class="fw-bold">Nom:</td><td>{{equipe.name}}</td></tr>
+                <tr><td class="fw-bold">Ville:</td><td>{{equipe.ville}}</td></tr>
+               
+                
+    
+               </table>
+    
+                <div class='border-1 border border-primary'>
+                    {% for x in equipe.joueur_set.all %}
+                    <hr>
+                        <p>{{x.name}}</p>
+                        <p>{{x.surname}}</p>
+                        <p>{{x.role}}</p>
+                        <hr>
+                    {% endfor %}
+                </div>
+               
+              {% endfor %}
+            </div>
+        </div>
+        
+       
+    </div>
+</section>
+
+..................................................
+
+
+
+<section>
+
+    <h3>EQUIPES NON COMPLETES </h3>
+
+    <div class="d-flex">
+        <div>
+            {% for equipe in enc %}
+            <table border="1">
+                <tr>
+                    <td class="fw-bold">Nom:</td>
+                    <td>{{equipe.name}}</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold">Ville:</td>
+                    <td>{{equipe.ville}}</td>
+                </tr>
+            </table>
+    
+            <table border="1">
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Équipe</th>
+                </tr>
+                {% for joueur in equipe.joueur_set.all|slice:":4" %}  <!-- Récupérer les quatre premiers joueurs -->
+                <tr>
+                    <td>{{joueur.name}}</td>
+                    <td>{{joueur.surname}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+    
+            {% empty %}
+            <p>Aucune équipe n'est disponible.</p>
+            {% endfor %}
+        </div>
+    </div>    
+
+</section>
+
+
+..................................................
+
+
+
+<section>
+    <h3>JOUEURS SANS EQUIPES</h3>
+
+    <div>
+        <table border="1">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+            </tr>
+            {% for joueur in jse %}
+            <tr>
+                <td>{{ joueur.name }}</td>
+                <td>{{ joueur.surname }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+</section>
+
+..................................................
+
+
+
+<section>
+    <h3>JOUEURS EQUIPES</h3>
+
+    <div>
+        <table border="1">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+            </tr>
+            {% for joueur in je %}
+            <tr>
+                <td>{{ joueur.name }}</td>
+                <td>{{ joueur.surname }}</td>
+                <td>{{joueur.equipe}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+</section>
+
+
+..................................................
+
+
+
+<section>
+    <h3>EQUIPES EUROPE</h3>
+
+    <div>
+        <table border="1">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+            </tr>
+            {% for equipe in ee %}
+            <tr>
+              
+                <td>{{equipe.name}}</td>
+                <td>{{equipe.ville}}</td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+</section>
+
+
+..................................................
+
+
+
+<section>
+    <h3>EQUIPES HORS EUROPE</h3>
+
+    <div>
+        <table border="1">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+            </tr>
+            {% for equipe in ehe %}
+            <tr>
+                <td>{{ equipe.name }}</td>
+                <td>{{ equipe.ville }}</td>
+                        </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
 </section>
 
 

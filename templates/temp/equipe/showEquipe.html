@@ -1,0 +1,29 @@
+{% extends 'temp/base.html' %} 
+
+{% block content %} 
+
+<div class=" d-flex">
+    <div class="">
+        <div>
+       
+           <table border=1>
+            <tr><td class="fw-bold">Nom:</td><td>{{equipe.name}}</td></tr>
+            <tr><td class="fw-bold">Ville:</td><td>{{equipe.ville}}</td></tr>
+           
+            
+
+           </table>
+
+            {% for x in joueurs %}
+                <p>{{x.name}}</p>
+                <p>{{x.surname}}</p>
+                <p>{{x.equipe}}</p>
+            {% endfor %}
+            {{joueurs.count}}/13
+        </div>
+    </div>
+    
+   
+</div>
+
+{% endblock content %}

@@ -1,4 +1,5 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
+from equipe.models import Equipe
 from .models import Joueur
 from .forms import JoueurForm
 
@@ -31,3 +32,23 @@ def addJoueur(request):
     else:
         form = JoueurForm()
     return render(request, "temp/joueur/addJoueur.html", { "form": form })
+
+
+
+
+def editJoueur(request,id):
+    edit = Joueur.objects.get(id=id)
+    if request.method == 'POST':
+        form = JoueurForm(request.POST, instance=edit)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = JoueurForm(instance=edit)
+    return render(request, 'temp/joueur/editJoueur.html', {'form': form})
+
+
+def showJoueur(request, id):
+    equipe = Equipe.objects.all()
+    joueur = get_object_or_404(Joueur, id=id)
+    return render(request, 'temp/joueur/showJoueur.html', {'joueur': joueur,'equipe':equipe})

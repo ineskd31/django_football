@@ -13,7 +13,6 @@ class Equipe(models.Model):
     ville = models.CharField(max_length=50)
     pays = models.CharField(max_length=50)
     continent = models.ForeignKey(Continent, on_delete=models.CASCADE)
-    # maxJoueur = models.IntegerField()
     
     def __str__(self):
         return self.name
